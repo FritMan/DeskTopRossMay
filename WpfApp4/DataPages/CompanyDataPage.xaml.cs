@@ -45,6 +45,7 @@ namespace WpfApp4.DataPages
 
         private void LoadData()
         {
+            // gdfgdgfdgd
             if(ZapCb.SelectedIndex == 3)
             {
                 if (string.IsNullOrEmpty(FilterTb.Text))
