@@ -18,7 +18,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Frame x:Name="MainFrame" Grid.ColumnSpan="3" Grid.Row="1" Source="Pages\AuthPage.xaml" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="MainFrame" Grid.ColumnSpan="3" Grid.Row="1" Source="Pages\AuthCodePage.xaml" NavigationUIVisibility="Hidden"/>
 
         <Expander x:Name="ProfileExp" Grid.Column="2" Visibility="Collapsed" HorizontalAlignment="Right">
             <Expander.Header>
