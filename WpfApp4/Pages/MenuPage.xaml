@@ -1,0 +1,62 @@
+﻿<Page x:Class="WpfApp4.Pages.MenuPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp4.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MenuPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Навигация" HorizontalAlignment="Left"/>
+        <Button Width="30" Height="30" HorizontalAlignment="Right" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            <Button.Content>
+                <Image Source="C:\Users\Ансар\Downloads\menu (1).png" />
+            </Button.Content>
+        </Button>
+
+        <StackPanel Grid.Row="1" Orientation="Vertical" Width="Auto">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+                <Label Content="Главная" MouseDown="Label_MouseDown"/>
+                <Label Content="Монитор ТА"/>
+            </StackPanel>
+            <Expander>
+                <Expander.Header>
+                    <Label Content="Детальные отчёты" />
+                </Expander.Header>
+            </Expander>
+            <Expander>
+                <Expander.Header>
+                    <Label Content="Учёт ТМЦ" Margin="0, 0, 0, 0"/>
+                </Expander.Header>
+            </Expander>
+            
+            <Expander>
+                <Expander.Header>
+                    <Label Content="Администрирование"/>
+                </Expander.Header>
+
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+                    <Label Content="Торговые автоматы" x:Name="AutomatiLab" MouseDown="AutomatiLab_MouseDown"/>
+                    <Label Content="Компании" x:Name="CompanyLab" MouseDown="CompanyLab_MouseDown"/>
+                    <Label Content="Пользователи"/>
+                    <Label Content="Модемы"/>
+                </StackPanel>
+            </Expander>
+        </StackPanel>
+
+        <Frame x:Name="MenuFrame" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" NavigationUIVisibility="Hidden" Source="GraphPage.xaml"/>
+    </Grid>
+</Page>

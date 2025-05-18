@@ -1,0 +1,81 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp4.DataPages"
+      xmlns:Data="clr-namespace:WpfApp4.Data" x:Class="WpfApp4.DataPages.CompanyDataPage"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="CompanyDataPage">
+
+    <Page.Resources>
+        <CollectionViewSource x:Key="companyViewSource" d:DesignSource="{d:DesignInstance {x:Type Data:Company}}"/>
+        <CollectionViewSource x:Key="companyViewSource1" d:DesignSource="{d:DesignInstance {x:Type Data:Company}}"/>
+    </Page.Resources>
+
+    <Grid DataContext="{StaticResource companyViewSource}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Показать" VerticalAlignment="Center"/>
+            <ComboBox x:Name="ZapCb" Width="60" Height="30" SelectionChanged="ZapCb_SelectionChanged"/>
+            <Label Content="записей" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1">
+            <Label Content="Фильтр" VerticalAlignment="Center"/>
+            <TextBox x:Name="FilterTb" TextChanged="FilterTb_TextChanged" IsEnabled="False"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="2">
+            <Button x:Name="AddBtn" Content="Добавить"/>
+            <Button x:Name="ExpBtn" Click="ExpBtn_Click" Content="Экспорт"/>
+        </StackPanel>
+
+
+
+
+        <Label x:Name="CountLab" Grid.Row="3"/>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center">
+            <Button x:Name="BackBtn" Width="30" Height="30" Click="BackBtn_Click">
+                <Button.Content>
+                    <Image Source="/assets/free-icon-back-3114883.png"/>
+                </Button.Content>
+            </Button>
+
+            <TextBox x:Name="PageCountTb" Width="30" IsReadOnly="True"/>
+
+            <Button x:Name="ForwardBtn" Width="30" Height="30" Click="ForwardBtn_Click">
+                <Button.Content>
+                    <Image Source="/assets/arrow_forward_icon_235222.png"/>
+                </Button.Content>
+            </Button>
+        </StackPanel>
+        <DataGrid AlternationCount="2" AlternatingRowBackground="Aqua" x:Name="companyDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource companyViewSource1}}" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Название" />
+                <DataGridTextColumn x:Name="addressColumn" Binding="{Binding Address}" Header="Адрес" />
+                <DataGridTextColumn x:Name="websiteAddressColumn" Binding="{Binding WebsiteAddress}" Header="Адрес сайта" />
+                <DataGridTextColumn x:Name="codeColumn" Binding="{Binding Code}" Header="Код" />
+                <DataGridTextColumn x:Name="CompanyFIOColumn" Binding="{Binding CompanyFIO}" Header="Ответсвенное лицо"/>
+                <DataGridTextColumn x:Name="CompanyLoginColumn" Binding="{Binding CompanyLogin}" Header="Логин" />
+                <DataGridTextColumn x:Name="CompanyPhoneColumn" Binding="{Binding CompanyPhone}" Header="Телефон" />
+                <DataGridTextColumn x:Name="CompanyEmailColumn" Binding="{Binding CompanyEmail}" Header="Email" />
+                <DataGridTextColumn x:Name="statusIdColumn" Binding="{Binding StatusCompany.Name}" Header="Статус"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

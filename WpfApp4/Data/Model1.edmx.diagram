@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9b5377ea517b4f15a675019fd426495f" Name="Diagram1">
+        <EntityTypeShape EntityType="VseRoss2DBModel.Company" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VseRoss2DBModel.Mark" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VseRoss2DBModel.Model" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VseRoss2DBModel.Modem" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VseRoss2DBModel.News" Width="1.5" PointX="5.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VseRoss2DBModel.PaymentType" Width="1.5" PointX="8.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VseRoss2DBModel.Product" Width="1.5" PointX="5.25" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VseRoss2DBModel.ProductInStorage" Width="1.5" PointX="14.25" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VseRoss2DBModel.ProductInVending" Width="1.5" PointX="7.5" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VseRoss2DBModel.Role" Width="1.5" PointX="3" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VseRoss2DBModel.Sales" Width="1.5" PointX="10.5" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VseRoss2DBModel.Service" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="VseRoss2DBModel.Status" Width="1.5" PointX="3" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VseRoss2DBModel.StatusCompany" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VseRoss2DBModel.Storage" Width="1.5" PointX="12" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VseRoss2DBModel.Type" Width="1.5" PointX="3" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VseRoss2DBModel.TypeStorage" Width="1.5" PointX="9.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VseRoss2DBModel.UnitOfMeasurement" Width="1.5" PointX="3" PointY="23.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VseRoss2DBModel.User" Width="1.5" PointX="5.25" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VseRoss2DBModel.Vending" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="VseRoss2DBModel.VendingType" Width="1.5" PointX="7.75" PointY="11.125" IsExpanded="true" />
+        <AssociationConnector Association="VseRoss2DBModel.FK_Company_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="VseRoss2DBModel.FK_Company_StatusCompany" ManuallyRouted="false" />
+        <AssociationConnector Association="VseRoss2DBModel.FK_Vending_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="VseRoss2DBModel.FK_Model_Mark" ManuallyRouted="false" />
+        <AssociationConnector Association="VseRoss2DBModel.FK_Vending_Model" ManuallyRouted="false" />
+        <AssociationConnector Association="VseRoss2DBModel.FK_Vending_Modem" ManuallyRouted="false" />
+        <AssociationConnector Association="VseRoss2DBModel.FK_Sales_PaymentType" ManuallyRouted="false" />
+        <AssociationConnector Association="VseRoss2DBModel.FK_Product_UnitOfMeasurement" ManuallyRouted="false" />
+        <AssociationConnector Association="VseRoss2DBModel.FK_ProductInStorage_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="VseRoss2DBModel.FK_ProductInVending_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="VseRoss2DBModel.FK_Sales_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="VseRoss2DBModel.FK_ProductInStorage_Storage" ManuallyRouted="false" />
+        <AssociationConnector Association="VseRoss2DBModel.FK_ProductInVending_Vending" ManuallyRouted="false" />
+        <AssociationConnector Association="VseRoss2DBModel.FK_User_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="VseRoss2DBModel.FK_Sales_Vending" ManuallyRouted="false" />
+        <AssociationConnector Association="VseRoss2DBModel.FK_Service_User" ManuallyRouted="false" />
+        <AssociationConnector Association="VseRoss2DBModel.FK_Service_Vending" ManuallyRouted="false" />
+        <AssociationConnector Association="VseRoss2DBModel.FK_Vending_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="VseRoss2DBModel.FK_Storage_TypeStorage" ManuallyRouted="false" />
+        <AssociationConnector Association="VseRoss2DBModel.FK_Vending_Type" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
