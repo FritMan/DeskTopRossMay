@@ -45,7 +45,6 @@ namespace WpfApp4.DataPages
 
         private void LoadData()
         {
-            // gdfgdgfdgd
             if(ZapCb.SelectedIndex == 3)
             {
                 if (string.IsNullOrEmpty(FilterTb.Text))
@@ -56,10 +55,9 @@ namespace WpfApp4.DataPages
                 }
                 else
                 {
-                    //LINQ не поддерживает поиск по стороннему классу, спросить у Караева!
-                    companyDataGrid.ItemsSource = Db.Company.Where(el => el.CompanyFIO.Contains(FilterTb.Text)).ToList();
+                    companyDataGrid.ItemsSource = Db.Company.ToList().Where(el => el.CompanyFIO.Contains(FilterTb.Text) || el.Name.Contains(FilterTb.Text)).ToList();
 
-                    Count = Db.Company.Where(el => el.CompanyFIO.Contains(FilterTb.Text)).Count();
+                    Count = Db.Company.ToList().Where(el => el.CompanyFIO.Contains(FilterTb.Text)).Count();
                 }
 
                 CountLab.Content = $"Записи с {Count - (Count - 1)} до {Count} из {Count}";
@@ -68,17 +66,15 @@ namespace WpfApp4.DataPages
             {
                 if (string.IsNullOrEmpty(FilterTb.Text))
                 {
-                    //LINQ не поддерживает поиск по стороннему классу, спросить у Караева!
                     companyDataGrid.ItemsSource = Db.Company.ToList().Skip(PageZap * (PageCount - 1)).Take(PageZap);
 
                     Count = Db.Company.Count();
                 }
                 else
                 {
-                    //LINQ не поддерживает поиск по стороннему классу, спросить у Караева!
-                    companyDataGrid.ItemsSource = Db.Company.Where(el => el.CompanyFIO.Contains(FilterTb.Text)).ToList().Skip(PageZap * (PageCount - 1)).Take(PageZap);
+                    companyDataGrid.ItemsSource = Db.Company.ToList().Where(el => el.CompanyFIO.Contains(FilterTb.Text) || el.Name.Contains(FilterTb.Text)).ToList().Skip(PageZap * (PageCount - 1)).Take(PageZap);
 
-                    Count = Db.Company.Where(el => el.CompanyFIO.Contains(FilterTb.Text)).Count();
+                    Count = Db.Company.ToList().Where(el => el.CompanyFIO.Contains(FilterTb.Text)).Count();
                 }
 
                 CountLab.Content = $"Записи с {(PageZap * (PageCount - 1)) + 1} до {Math.Min(Count, PageCount * PageZap)} из {Count}";

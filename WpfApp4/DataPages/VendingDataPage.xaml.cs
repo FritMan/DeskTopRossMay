@@ -41,6 +41,7 @@ namespace WpfApp4.DataPages
                 if (string.IsNullOrEmpty(FilterTb.Text))
                 {
                     vendingDataGrid.ItemsSource = Db.Vending.ToList();
+                    vendingListView.ItemsSource = Db.Vending.ToList();
 
                     Count = Db.Vending.Count();
 
@@ -48,6 +49,7 @@ namespace WpfApp4.DataPages
                 else
                 {
                     vendingDataGrid.ItemsSource = Db.Vending.Where(el => el.Name.Contains(FilterTb.Text)).ToList();
+                    vendingListView.ItemsSource = Db.Vending.Where(el => el.Name.Contains(FilterTb.Text)).ToList();
 
                     Count = Db.Vending.Where(el => el.Name.Contains(FilterTb.Text)).Count();
                 }
@@ -58,6 +60,7 @@ namespace WpfApp4.DataPages
                 if (string.IsNullOrEmpty(FilterTb.Text))
                 {
                     vendingDataGrid.ItemsSource = Db.Vending.ToList().Skip(PageZap * (PageCount - 1)).Take(PageZap);
+                    vendingListView.ItemsSource = Db.Vending.ToList().Skip(PageZap * (PageCount - 1)).Take(PageZap);
 
                     Count = Db.Vending.Count();
 
@@ -65,6 +68,7 @@ namespace WpfApp4.DataPages
                 else
                 {
                     vendingDataGrid.ItemsSource = Db.Vending.Where(el => el.Name.Contains(FilterTb.Text)).ToList().Skip(PageZap * (PageCount - 1)).Take(PageZap);
+                    vendingListView.ItemsSource = Db.Vending.Where(el => el.Name.Contains(FilterTb.Text)).ToList().Skip(PageZap * (PageCount - 1)).Take(PageZap);
 
                     Count = Db.Vending.Where(el => el.Name.Contains(FilterTb.Text)).Count();
                 }
@@ -170,6 +174,24 @@ namespace WpfApp4.DataPages
                 PageCount--;
                 LoadData();
             }
+        }
+
+        private void TileImg_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            TableImg.Source = BitmapFrame.Create(new Uri(@"C:\Users\Ансар\source\repos\SessionRoss4\SessionRoss4\assets\free-icon-table-grid-25617.png"));
+            TileImg.Source = BitmapFrame.Create(new Uri(@"C:\Users\Ансар\source\repos\SessionRoss4\SessionRoss4\assets\free-icon-tile-875161_gol.png"));
+
+            vendingListView.Visibility = Visibility.Visible;
+            vendingDataGrid.Visibility = Visibility.Collapsed;
+        }
+
+        private void TableImg_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            TableImg.Source = BitmapFrame.Create(new Uri(@"C:\Users\Ансар\source\repos\SessionRoss4\SessionRoss4\assets\free-icon-table-grid-25617_gol.png"));
+            TileImg.Source = BitmapFrame.Create(new Uri(@"C:\Users\Ансар\source\repos\SessionRoss4\SessionRoss4\assets\free-icon-tile-875161.png"));
+
+            vendingListView.Visibility = Visibility.Collapsed;
+            vendingDataGrid.Visibility = Visibility.Visible;
         }
     }
     public class NewVending

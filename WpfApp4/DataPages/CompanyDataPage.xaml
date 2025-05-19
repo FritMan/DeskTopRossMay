@@ -36,7 +36,7 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1">
             <Label Content="Фильтр" VerticalAlignment="Center"/>
-            <TextBox x:Name="FilterTb" TextChanged="FilterTb_TextChanged" IsEnabled="False"/>
+            <TextBox x:Name="FilterTb" TextChanged="FilterTb_TextChanged" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="2">

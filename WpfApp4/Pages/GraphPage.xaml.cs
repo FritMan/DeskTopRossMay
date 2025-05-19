@@ -119,13 +119,13 @@ namespace WpfApp4.Pages
                 {
                     var date = start.AddDays(i);
 
-                    int colvo = 0;
+                    double colvo = 0;
 
                     foreach (var s in sales_db)
                     {
                         if (s.DatetimeSale.Date == date.Date)
                         {
-                            colvo += s.Quantity;
+                            colvo += (double)s.Quantity;
                         }
                     }
 
@@ -134,9 +134,9 @@ namespace WpfApp4.Pages
                 }
 
                 var series = new SeriesCollection()
-                {
-                    new ColumnSeries {Values=new ChartValues<double> {} }
-                };
+            {
+                new ColumnSeries {Values=new ChartValues<double> {} }
+            };
 
                 QuatnSotlbGraph.Series = series;
 
@@ -146,7 +146,7 @@ namespace WpfApp4.Pages
                 }
 
                 List<string> labels = new List<string>();
-                var culture = new CultureInfo("RU-ru");
+                var culture = new CultureInfo("Ru-ru");
 
                 for (int i = 0; i < 10; i++)
                 {
@@ -167,12 +167,15 @@ namespace WpfApp4.Pages
         {
             StolbGraph.Visibility = Visibility.Visible;
             QuatnSotlbGraph.Visibility = Visibility.Collapsed;
+
         }
 
         private void ColfoBtn_Click(object sender, RoutedEventArgs e)
         {
             StolbGraph.Visibility = Visibility.Collapsed;
             QuatnSotlbGraph.Visibility = Visibility.Visible;
+
+            LoadData();
         }
     }
 }

@@ -6,13 +6,16 @@
       xmlns:local="clr-namespace:WpfApp4.DataPages"
       xmlns:Data="clr-namespace:WpfApp4.Data" x:Class="WpfApp4.DataPages.VendingDataPage"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="900"
       Title="VendingDataPage">
 
     <Page.Resources>
         <CollectionViewSource x:Key="vendingViewSource" d:DesignSource="{d:DesignInstance {x:Type Data:Vending}}"/>
+        <CollectionViewSource x:Key="vendingViewSource1" d:DesignSource="{d:DesignInstance {x:Type Data:Vending}}"/>
+        <CollectionViewSource x:Key="companyViewSource" d:DesignSource="{d:DesignInstance {x:Type Data:Company}}"/>
+        <CollectionViewSource x:Key="vendingViewSource2" d:DesignSource="{d:DesignInstance {x:Type Data:Vending}}"/>
     </Page.Resources>
-   
+
 
     <Grid DataContext="{StaticResource vendingViewSource}">
         <Grid.ColumnDefinitions>
@@ -44,6 +47,11 @@
             <Button x:Name="ExpBtn" Click="ExpBtn_Click" Content="Экспорт"/>
         </StackPanel>
 
+        <StackPanel Orientation="Horizontal" Grid.Column="2" HorizontalAlignment="Right" >
+            <Image x:Name="TableImg" Source="/assets/free-icon-table-grid-25617_gol.png" Width="20"  Margin="10" MouseDown="TableImg_MouseDown"/>
+            <Image x:Name="TileImg" Source="/assets/free-icon-tile-875161.png" Width="20" MouseDown="TileImg_MouseDown"/>
+        </StackPanel>
+
         <DataGrid IsReadOnly="True" x:Name="vendingDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" AlternationCount="2" AlternatingRowBackground="Aqua"  Grid.Row="2" Grid.ColumnSpan="3">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" />
@@ -71,6 +79,56 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+
+        <ListView x:Name="vendingListView"  Grid.Row="2" Grid.ColumnSpan="3" Visibility="Collapsed">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="2"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                       
+                        <Label Grid.Column="0" Content="Адрес/Место:" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
+                        <TextBox x:Name="addressAndPlaceTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="6" Text="{Binding AddressAndPlace, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                        <Label Grid.Column="0" Content="Компания:" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+                        <TextBox x:Name="companyIdTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="3" Text="{Binding Company.Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                        <Label Grid.Column="0" Content="В работе с:" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
+                        <DatePicker x:Name="dateInstallDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="7" SelectedDate="{Binding DateInstall, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
+                        <Label Grid.Column="0" Content="Id:" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+                        <TextBox x:Name="idTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="0" Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                        <Label Grid.Column="0" Content="Модель:" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
+                        <TextBox x:Name="modelIdTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="5" Text="{Binding Model.Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                        <Label Grid.Column="0" Content="Модем:" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+                        <TextBox x:Name="modemIdTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="4" Text="{Binding Modem.Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                        <Label Grid.Column="0" Content="Название:" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+                        <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="1" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+
+                        <StackPanel Orientation="Horizontal" Grid.Row="8">
+                            <Image Source="/assets/free-icon-pencil-1166723.png" Width="30" x:Name="Editmg"/>
+                            <Image Source="/assets/free-icon-recycle-bin-3156999.png" Width="30" x:Name="DeleteImg"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
         <Label x:Name="CountLab" Grid.Row="3"/>
 
