@@ -40,7 +40,7 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="2">
-            <Button x:Name="AddBtn" Content="Добавить"/>
+            <Button x:Name="AddBtn" Content="Добавить/Изменить" Width="160" Click="AddBtn_Click"/>
             <Button x:Name="ExpBtn" Click="ExpBtn_Click" Content="Экспорт"/>
         </StackPanel>
 
@@ -77,5 +77,7 @@
                 <DataGridTextColumn x:Name="statusIdColumn" Binding="{Binding StatusCompany.Name}" Header="Статус"/>
             </DataGrid.Columns>
         </DataGrid>
+
+        <Button x:Name="ActiveBtn" Click="ActiveBtn_Click" Content="Активировать" Grid.Column="1" Grid.Row="3"/>
     </Grid>
 </Page>

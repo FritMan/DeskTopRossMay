@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfApp4.Data;
 using static WpfApp4.Classes.Helper;
 
 namespace WpfApp4.DataPages
@@ -124,7 +125,21 @@ namespace WpfApp4.DataPages
             }
             else
             {
-                // Всё также косяк с LINQ
+                foreach (var el in Db.Company.ToList().Where(el => el.CompanyFIO.Contains(FilterTb.Text)))
+                {
+                    var com = el.Company2;
+
+                    if (com == null)
+                    {
+                        data += el.Name + ";" + "Отсутсвует" + ";" + el.Address + ";" + el.WebsiteAddress + ";" + el.CompanyFIO + ";" + el.CompanyLogin + ";" +
+                            el.CompanyPhone + ";" + el.StatusCompany.Name + "\n";
+                    }
+                    else
+                    {
+                        data += el.Name + ";" + el.Company2.Name + ";" + el.Address + ";" + el.WebsiteAddress + ";" + el.CompanyFIO + ";" + el.CompanyLogin + ";" +
+                            el.CompanyPhone + ";" + el.StatusCompany.Name + "\n";
+                    }
+                }
             }
 
             var dialog = new SaveFileDialog();
@@ -156,6 +171,36 @@ namespace WpfApp4.DataPages
             if(PageCount * PageZap < Count)
             {
                 PageCount++;
+                LoadData();
+            }
+        }
+
+        private void AddBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var sel_com = companyDataGrid.SelectedItem as Company;
+
+            if (sel_com != null)
+            {
+                var window = new EditCompanyWindow(sel_com.Id);
+                window.ShowDialog();
+                LoadData();
+            }
+            else
+            {
+                var window = new EditCompanyWindow(-1);
+                window.ShowDialog();
+                LoadData();
+            }
+        }
+
+        private void ActiveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var sel_com = companyDataGrid.SelectedItem as Company;
+
+            if (sel_com != null && sel_com.StatusId == 2)
+            {
+                sel_com.StatusId = 3;
+                Db.SaveChanges();
                 LoadData();
             }
         }

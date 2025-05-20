@@ -80,6 +80,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DataPages\EditCompanyWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DataPages\VendingDataPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -98,6 +102,9 @@
     <Compile Include="Classes\Vending.cs" />
     <Compile Include="DataPages\CompanyDataPage.xaml.cs">
       <DependentUpon>CompanyDataPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataPages\EditCompanyWindow.xaml.cs">
+      <DependentUpon>EditCompanyWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataPages\VendingDataPage.xaml.cs">
       <DependentUpon>VendingDataPage.xaml</DependentUpon>

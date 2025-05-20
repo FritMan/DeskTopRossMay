@@ -15,8 +15,17 @@ namespace WpfApp4.Data
             {
                 var user = Db.User.FirstOrDefault(el => el.Id == UserId);
 
-                return user.Login;
+                if (user == null)
+                {
+                    return "1";
+                }
+                else
+                {
+                    return user.Login;
+                }
             }
+
+            set { }
         }
 
         public string CompanyEmail
@@ -25,8 +34,17 @@ namespace WpfApp4.Data
             {
                 var user = Db.User.FirstOrDefault(el => el.Id == UserId);
 
-                return user.Email;
+                if(user == null)
+                {
+                    return "test@mail.ru";
+                }
+                else
+                {
+                    return user.Email;
+                }
             }
+
+            set { }
         }
 
         public string CompanyPhone
@@ -35,8 +53,17 @@ namespace WpfApp4.Data
             {
                 var user = Db.User.FirstOrDefault(el => el.Id == UserId);
 
-                return user.Phone;
+                if (user == null)
+                {
+                    return "+ 7 (xxx) (xxx) xx xx";
+                }
+                else
+                {
+                    return user.Phone;
+                }
             }
+
+            set { }
         }
 
         public string CompanyFIO
@@ -45,8 +72,17 @@ namespace WpfApp4.Data
             {
                 var user = Db.User.FirstOrDefault(el => el.Id == UserId);
 
-                return user.FIO;
+                if (user == null)
+                {
+                    return "Иванов Иван Иванович";
+                }
+                else
+                {
+                    return user.FIO;
+                }
             }
+
+            set { }
         }
     }
 }
