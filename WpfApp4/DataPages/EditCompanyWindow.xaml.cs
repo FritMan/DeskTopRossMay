@@ -77,9 +77,8 @@ namespace WpfApp4.DataPages
         {
                 if(_Id == -1)
                 {
-                    var new_com = grid1.DataContext as Company;
-                    new_com.StatusId = 2;
-                    Db.Company.Add(new_com);
+                    com.StatusId = 2;
+                    Db.Company.Add(com);
                 }
                 Db.SaveChanges();
                 Close();
@@ -92,9 +91,11 @@ namespace WpfApp4.DataPages
 
         private void UserComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-                var sel_user = UserComboBox.SelectedItem as User;
-
+            var sel_user = UserComboBox.SelectedItem as User;
+            if (sel_user != null)
+            {
                 com.UserId = sel_user.Id;
+            }
         }
     }
 }
