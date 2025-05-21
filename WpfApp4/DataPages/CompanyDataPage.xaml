@@ -40,7 +40,7 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="2">
-            <Button x:Name="AddBtn" Content="Добавить/Изменить" Width="160" Click="AddBtn_Click"/>
+            <Button x:Name="AddBtn" Content="Добавить" Width="160" Click="AddBtn_Click"/>
             <Button x:Name="ExpBtn" Click="ExpBtn_Click" Content="Экспорт"/>
         </StackPanel>
 
@@ -64,7 +64,7 @@
                 </Button.Content>
             </Button>
         </StackPanel>
-        <DataGrid AlternationCount="2" AlternatingRowBackground="Aqua" x:Name="companyDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource companyViewSource1}}" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2">
+        <DataGrid AlternatingRowBackground="White" RowBackground="Aqua" x:Name="companyDataGrid" IsReadOnly="True" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource companyViewSource1}}" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Название" />
                 <DataGridTextColumn x:Name="addressColumn" Binding="{Binding Address}" Header="Адрес" />
@@ -75,9 +75,18 @@
                 <DataGridTextColumn x:Name="CompanyPhoneColumn" Binding="{Binding CompanyPhone}" Header="Телефон" />
                 <DataGridTextColumn x:Name="CompanyEmailColumn" Binding="{Binding CompanyEmail}" Header="Email" />
                 <DataGridTextColumn x:Name="statusIdColumn" Binding="{Binding StatusCompany.Name}" Header="Статус"/>
+                <DataGridTemplateColumn Header="Действия">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Изменить" Tag="{Binding }" Click="Button_Click"/>
+                                <Button Content="Удалить" Tag="{Binding }" Click="Button_Click_1"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button x:Name="ActiveBtn" Click="ActiveBtn_Click" Content="Активировать" Grid.Column="1" Grid.Row="3"/>
     </Grid>
 </Page>

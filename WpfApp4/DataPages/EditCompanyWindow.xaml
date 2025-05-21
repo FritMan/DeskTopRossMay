@@ -11,7 +11,10 @@
         <CollectionViewSource x:Key="companyViewSource" d:DesignSource="{d:DesignInstance {x:Type Data:Company}}"/>
     </Window.Resources>
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
         <Grid x:Name="grid1" DataContext="{StaticResource companyViewSource}" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -40,6 +43,8 @@
             <TextBox x:Name="codeTextBox" Grid.Column="1" IsEnabled="False" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="1" Text="{Binding Code, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             
             <Label Grid.Column="0" Content="User:" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+            
+            <Label x:Name="EdiUserLab" Grid.Column="1" Margin="3" Grid.Row="3" Content="{Binding CompanyFIO}" Visibility="Collapsed"/>
             <ComboBox x:Name="UserComboBox" SelectionChanged="UserComboBox_SelectionChanged" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="3" DisplayMemberPath="FIO" SelectedItem="{Binding User, Mode=OneWay}" VerticalAlignment="Center" Width="120"/>
 
             <Label Grid.Column="0" Content="Date Create:" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center"/>
@@ -50,7 +55,14 @@
             <Label Grid.Column="0" Content="Website Address:" HorizontalAlignment="Left" Margin="3" Grid.Row="13" VerticalAlignment="Center"/>
             <TextBox x:Name="websiteAddressTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="13" Text="{Binding WebsiteAddress, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Button x:Name="OkBtn" Click="OkBtn_Click" Content="Ок" Grid.Row="14" HorizontalAlignment="Center"/>
+
+
             <Button x:Name="ReRegCode" Click="ReRegCode_Click" Content="Генирирование" Grid.Row="14" Grid.Column="1"/>
         </Grid>
+
+        <StackPanel x:Name="EditComStack" Orientation="Horizontal"  Grid.Row="1" HorizontalAlignment="Center" Visibility="Collapsed">
+            <Button x:Name="ActiveBtn" Click="ActiveBtn_Click" Content="Активировать"/>
+            <Button x:Name="BlockBtn" Click="BlockBtn_Click" Content="Заблокировать"/>
+        </StackPanel>
     </Grid>
 </Window>

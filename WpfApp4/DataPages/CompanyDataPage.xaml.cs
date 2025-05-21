@@ -177,20 +177,10 @@ namespace WpfApp4.DataPages
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
-            var sel_com = companyDataGrid.SelectedItem as Company;
 
-            if (sel_com != null)
-            {
-                var window = new EditCompanyWindow(sel_com.Id);
-                window.ShowDialog();
-                LoadData();
-            }
-            else
-            {
                 var window = new EditCompanyWindow(-1);
                 window.ShowDialog();
                 LoadData();
-            }
         }
 
         private void ActiveBtn_Click(object sender, RoutedEventArgs e)
@@ -200,6 +190,30 @@ namespace WpfApp4.DataPages
             if (sel_com != null && sel_com.StatusId == 2)
             {
                 sel_com.StatusId = 3;
+                Db.SaveChanges();
+                LoadData();
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var company = ((sender as Button).Tag as Company).Id;
+
+
+            var window = new EditCompanyWindow(company);
+            window.ShowDialog();
+            LoadData();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            var company = ((sender as Button).Tag as Company);
+
+            MessageBoxResult result = MessageBox.Show("Вы точно хотите удалить?", "Удаление", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                Db.Company.Remove(company);
                 Db.SaveChanges();
                 LoadData();
             }

@@ -40,12 +40,20 @@ namespace WpfApp4.DataPages
                 UserComboBox.ItemsSource = Db.User.ToList();
                 UserComboBox.SelectedIndex = 0;
 
+
                 grid1.DataContext = com;
             }
             else
             {
-                grid1.DataContext = Db.Company.First(el => el.Id == _Id);
-                UserComboBox.ItemsSource = Db.User.ToList();
+                ReRegCode.Visibility = Visibility.Collapsed;
+
+                com = Db.Company.First(el => el.Id == _Id);
+                grid1.DataContext = com;
+                grid1.IsEnabled = false;
+                EdiUserLab.Visibility = Visibility.Visible;
+                UserComboBox.Visibility = Visibility.Collapsed;
+                OkBtn.Visibility = Visibility.Collapsed;
+                EditComStack.Visibility = Visibility.Visible;
             }
         }
 
@@ -96,6 +104,23 @@ namespace WpfApp4.DataPages
             {
                 com.UserId = sel_user.Id;
             }
+        }
+
+        private void ActiveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if(com.StatusId == 2)
+            {
+                com.StatusId = 3;
+                Db.SaveChanges();
+                Close();
+            }
+        }
+
+        private void BlockBtn_Click(object sender, RoutedEventArgs e)
+        {
+            com.StatusId = 4;
+            Db.SaveChanges();
+            Close();
         }
     }
 }
